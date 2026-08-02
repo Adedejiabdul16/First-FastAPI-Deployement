@@ -12,7 +12,7 @@ router = APIRouter(
 
 
 
-@router.get('/', response_model = List[schemas.PostVote])
+@router.get('', response_model = List[schemas.PostVote])
 def get_posts(db : Session = Depends(get_db), current_user : int = Depends(oauth2.get_current_user),
                limit : int = 10, skip : int = 0, search : Optional[str] = ""):
     
@@ -27,7 +27,7 @@ def get_posts(db : Session = Depends(get_db), current_user : int = Depends(oauth
     return result
 
 
-@router.post('/', status_code=status.HTTP_201_CREATED, response_model = schemas.PostReturn)
+@router.post('', status_code=status.HTTP_201_CREATED, response_model = schemas.PostReturn)
 def create_post(post: schemas.PostCreate, db : Session = Depends(get_db),current_user : int = Depends(oauth2.get_current_user)):
     #cursor.execute("""INSERT INTO posts (title, content, published) VALUES (%s, %s, %s) RETURNING*""",
                     #(post.title, post.content, post.published))
